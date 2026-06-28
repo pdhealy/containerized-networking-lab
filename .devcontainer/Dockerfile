@@ -11,14 +11,20 @@ RUN apt-get update && apt-get install -y \
     iputils-ping \
     net-tools \
     curl \
+    zstd \
     traceroute \
     bash \
     sudo \
     tcpdump \
+        && (apt-get install -y docker-compose-plugin || apt-get install -y docker-compose) \
     && rm -rf /var/lib/apt/lists/*
 
 # Create a symlink for docker-compose if needed
-RUN ln -s /usr/libexec/docker/cli-plugins/docker-compose /usr/local/bin/docker-compose || true
+RUN if [ -x /usr/libexec/docker/cli-plugins/docker-compose ]; then \
+            ln -sf /usr/libexec/docker/cli-plugins/docker-compose /usr/local/bin/docker-compose; \
+        elif [ -x /usr/lib/docker/cli-plugins/docker-compose ]; then \
+            ln -sf /usr/lib/docker/cli-plugins/docker-compose /usr/local/bin/docker-compose; \
+        fi
 
 # Ensure the 'node' user can use sudo without a password
 RUN echo "node ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers

@@ -1,0 +1,19 @@
+{
+  "features": {
+    "ghcr.io/devcontainers/features/copilot-cli:1.1.3": {
+      "version": "1.1.3",
+      "resolved": "ghcr.io/devcontainers/features/copilot-cli@sha256:e10d091ae7ef9b8d2ed5f601d75f5a090bc04acbac1a26d4cd3c0d5edde4ea10",
+      "integrity": "sha256:e10d091ae7ef9b8d2ed5f601d75f5a090bc04acbac1a26d4cd3c0d5edde4ea10"
+    },
+    "ghcr.io/postfinance/devcontainer-features/claude-code:1": {
+      "version": "1.0.0",
+      "resolved": "ghcr.io/postfinance/devcontainer-features/claude-code@sha256:b2f74eede53e4336688fe92896794d2bc0c357f9eb8f190c8fa7071d478afe4c",
+      "integrity": "sha256:b2f74eede53e4336688fe92896794d2bc0c357f9eb8f190c8fa7071d478afe4c"
+    },
+    "ghcr.io/prulloac/devcontainer-features/ollama:1": {
+      "version": "1.0.1",
+      "resolved": "ghcr.io/prulloac/devcontainer-features/ollama@sha256:0a4b90bd26bd2d6744a3a7080769f0d15ff379918aaa15aba1f93901ac085062",
+      "integrity": "sha256:0a4b90bd26bd2d6744a3a7080769f0d15ff379918aaa15aba1f93901ac085062"
+    }
+  }
+}

@@ -1,22 +1,25 @@
 COMPOSE_FILE = docker/docker-compose.yml
 COMPOSE_ENV = docker/.env
 
+# Prefer Docker Compose v2 plugin, fallback to legacy docker-compose.
+COMPOSE_CMD := $(shell if docker compose version >/dev/null 2>&1; then echo "docker compose"; elif command -v docker-compose >/dev/null 2>&1; then echo "docker-compose"; else echo "docker compose"; fi)
+
 .PHONY: build up down ps logs test dev-test clean
 
 build:
-	docker compose --env-file $(COMPOSE_ENV) -f $(COMPOSE_FILE) build
+	$(COMPOSE_CMD) -f $(COMPOSE_FILE) build
 
 up:
-	docker compose --env-file $(COMPOSE_ENV) -f $(COMPOSE_FILE) up -d
+	$(COMPOSE_CMD) -f $(COMPOSE_FILE) up -d
 
 down:
-	docker compose --env-file $(COMPOSE_ENV) -f $(COMPOSE_FILE) down
+	$(COMPOSE_CMD) -f $(COMPOSE_FILE) down
 
 ps:
-	docker compose --env-file $(COMPOSE_ENV) -f $(COMPOSE_FILE) ps
+	$(COMPOSE_CMD) -f $(COMPOSE_FILE) ps
 
 logs:
-	docker compose --env-file $(COMPOSE_ENV) -f $(COMPOSE_FILE) logs -f
+	$(COMPOSE_CMD) -f $(COMPOSE_FILE) logs -f
 
 # Load variables from .env
 include $(COMPOSE_ENV)

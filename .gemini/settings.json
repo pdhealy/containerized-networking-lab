@@ -1,0 +1,188 @@
+{
+  "mcpServers": {
+    "google-developer-knowledge": {
+      "httpUrl": "https://developerknowledge.googleapis.com/mcp",
+      "authProviderType": "google_credentials",
+      "oauth": {
+        "scopes": [
+          "https://www.googleapis.com/auth/cloud-platform"
+        ]
+      },
+      "timeout": 30000,
+      "headers": {
+        "X-goog-user-project": "windy-hangar-230322"
+      }
+    },
+    "sequential-thinking": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-sequential-thinking"
+      ],
+      "timeout": 15000
+    },
+    "context7": {
+      "httpUrl": "https://mcp.context7.com/mcp",
+      "timeout": 10000
+    }
+  },
+  "hooks": {
+    "BeforeTool": [
+      {
+        "matcher": ".*",
+        "hooks": [
+          {
+            "name": "logger",
+            "type": "command",
+            "command": ".gemini/hooks/log_activity.js",
+            "enabled": true
+          }
+        ]
+      }
+    ],
+    "AfterTool": [
+      {
+        "matcher": ".*",
+        "hooks": [
+          {
+            "name": "logger",
+            "type": "command",
+            "command": ".gemini/hooks/log_activity.js",
+            "enabled": true
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "name": "logger-SessionStart",
+            "type": "command",
+            "command": ".gemini/hooks/log_activity.py",
+            "enabled": false
+          }
+        ]
+      }
+    ],
+    "SessionEnd": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "name": "logger-SessionEnd",
+            "type": "command",
+            "command": ".gemini/hooks/log_activity.py",
+            "enabled": false
+          }
+        ]
+      }
+    ],
+    "BeforeAgent": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "name": "logger-BeforeAgent",
+            "type": "command",
+            "command": ".gemini/hooks/log_activity.py",
+            "enabled": false
+          }
+        ]
+      }
+    ],
+    "AfterAgent": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "name": "logger-AfterAgent",
+            "type": "command",
+            "command": ".gemini/hooks/log_activity.py",
+            "enabled": false
+          }
+        ]
+      }
+    ],
+    "BeforeModel": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "name": "logger-BeforeModel",
+            "type": "command",
+            "command": ".gemini/hooks/log_activity.py",
+            "enabled": false
+          }
+        ]
+      }
+    ],
+    "AfterModel": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "name": "logger-AfterModel",
+            "type": "command",
+            "command": ".gemini/hooks/log_activity.py",
+            "enabled": false
+          }
+        ]
+      }
+    ],
+    "BeforeToolSelection": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "name": "logger-BeforeToolSelection",
+            "type": "command",
+            "command": ".gemini/hooks/log_activity.py",
+            "enabled": false
+          }
+        ]
+      }
+    ],
+    "Notification": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "name": "logger-Notification",
+            "type": "command",
+            "command": ".gemini/hooks/log_activity.py",
+            "enabled": false
+          }
+        ]
+      }
+    ],
+    "PreCompress": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "name": "logger-PreCompress",
+            "type": "command",
+            "command": ".gemini/hooks/log_activity.py",
+            "enabled": false
+          }
+        ]
+      }
+    ]
+  },
+  "hooksConfig": {
+    "enabled": true,
+    "disabled": [
+      "logger-BeforeAgent",
+      "logger-AfterModel",
+      "logger-BeforeModel",
+      "logger-SessionEnd",
+      "logger-SessionStart",
+      "logger-PreCompress",
+      "logger-Notification",
+      "logger-AfterAgent",
+      "logger-BeforeToolSelection"
+    ]
+  }
+}

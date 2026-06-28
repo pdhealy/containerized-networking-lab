@@ -4,32 +4,46 @@
         "dockerfile": "Dockerfile",
         "context": ".."
     },
+	"features": {
+		"ghcr.io/devcontainers/features/copilot-cli:1.1.3": {},
+		"ghcr.io/prulloac/devcontainer-features/ollama:1": {},
+		"ghcr.io/postfinance/devcontainer-features/claude-code:1": {}
+	},
     "customizations": {
         "vscode": {
             "extensions": [
                 "ms-azuretools.vscode-docker"
             ],
             "settings": {
+                "task.allowAutomaticTasks": "on",
                 "terminal.integrated.profiles.linux": {
                     "lab-router": {
-                        "path": "docker",
-                        "args": ["exec", "-it", "lab-router", "bash"]
+                        "path": "/workspaces/containerized-networking-lab/scripts/lab-shell",
+                        "args": ["lab-router"]
                     },
                     "lab-client-a": {
-                        "path": "docker",
-                        "args": ["exec", "-it", "lab-client-a", "bash"]
+                        "path": "/workspaces/containerized-networking-lab/scripts/lab-shell",
+                        "args": ["lab-client-a"]
                     },
                     "lab-client-b": {
-                        "path": "docker",
-                        "args": ["exec", "-it", "lab-client-b", "bash"]
+                        "path": "/workspaces/containerized-networking-lab/scripts/lab-shell",
+                        "args": ["lab-client-b"]
                     }
                 }
             }
         }
     },
     "mounts": [
-        "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind"
+        "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind",
+        "source=ollama-models,target=/home/node/.ollama/models,type=volume"
     ],
-    "postCreateCommand": "make build && make up",
+	"runArgs": [
+		"--add-host=host.docker.internal:host-gateway"
+	],
+	"containerEnv": {
+		"OLLAMA_HOST": "http://host.docker.internal:11434"
+	},
+    "postCreateCommand": "sudo make build && sudo make up",
+	"postStartCommand": "sudo install -d -m 0755 -o node -g node /home/node/.ollama /home/node/.ollama/models && NODE=$(ls /vscode/vscode-server/bin/linux-*/*/node 2>/dev/null | head -1 || true) && [ -n \"$NODE\" ] && sudo ln -sf \"$NODE\" /usr/local/bin/node",
     "remoteUser": "node"
 }

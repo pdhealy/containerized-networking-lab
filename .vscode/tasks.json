@@ -3,42 +3,54 @@
     "tasks": [
         {
             "label": "Launch Router Terminal",
-            "type": "shell",
-            "command": "docker exec -it lab-router bash",
+            "type": "process",
+            "command": "/workspaces/containerized-networking-lab/scripts/lab-shell",
+            "args": ["lab-router"],
             "presentation": {
                 "group": "lab-terminals",
                 "reveal": "always",
-                "panel": "new"
+                "focus": true,
+                "panel": "new",
+                "showReuseMessage": false
             },
             "runOptions": {
                 "runOn": "folderOpen"
-            }
+            },
+            "problemMatcher": []
         },
         {
             "label": "Launch Client A Terminal",
-            "type": "shell",
-            "command": "docker exec -it lab-client-a bash",
+            "type": "process",
+            "command": "/workspaces/containerized-networking-lab/scripts/lab-shell",
+            "args": ["lab-client-a"],
             "presentation": {
                 "group": "lab-terminals",
                 "reveal": "always",
-                "panel": "new"
+                "focus": true,
+                "panel": "new",
+                "showReuseMessage": false
             },
             "runOptions": {
                 "runOn": "folderOpen"
-            }
+            },
+            "problemMatcher": []
         },
         {
             "label": "Launch Client B Terminal",
-            "type": "shell",
-            "command": "docker exec -it lab-client-b bash",
+            "type": "process",
+            "command": "/workspaces/containerized-networking-lab/scripts/lab-shell",
+            "args": ["lab-client-b"],
             "presentation": {
                 "group": "lab-terminals",
                 "reveal": "always",
-                "panel": "new"
+                "focus": true,
+                "panel": "new",
+                "showReuseMessage": false
             },
             "runOptions": {
                 "runOn": "folderOpen"
-            }
+            },
+            "problemMatcher": []
         }
     ]
 }

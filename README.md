@@ -31,7 +31,10 @@ A containerized homelab environment for studying, practicing, and testing networ
    make test
    ```
 
-3. **Shutdown**:
+3. **Open a lab shell**:
+   In the Dev Container, VS Code automatically opens terminals for `lab-router`, `lab-client-a`, and `lab-client-b` after the workspace starts or rebuilds. You can also use the terminal profile picker to open them manually.
+
+4. **Shutdown**:
    ```bash
    make down
    ```

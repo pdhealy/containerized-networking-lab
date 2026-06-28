@@ -1,4 +1,4 @@
-FROM ubuntu:24.04
+FROM debian:bookworm-slim
 
 # Avoid prompts from apt
 ENV DEBIAN_FRONTEND=noninteractive
