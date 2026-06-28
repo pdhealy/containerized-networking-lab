@@ -8,11 +8,28 @@
         "vscode": {
             "extensions": [
                 "ms-azuretools.vscode-docker"
-            ]
+            ],
+            "settings": {
+                "terminal.integrated.profiles.linux": {
+                    "lab-router": {
+                        "path": "docker",
+                        "args": ["exec", "-it", "lab-router", "bash"]
+                    },
+                    "lab-client-a": {
+                        "path": "docker",
+                        "args": ["exec", "-it", "lab-client-a", "bash"]
+                    },
+                    "lab-client-b": {
+                        "path": "docker",
+                        "args": ["exec", "-it", "lab-client-b", "bash"]
+                    }
+                }
+            }
         }
     },
     "mounts": [
         "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind"
     ],
+    "postCreateCommand": "make build && make up",
     "remoteUser": "node"
 }
